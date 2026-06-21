@@ -1,0 +1,20 @@
+{
+  "domain": "nmap.org",
+  "queried_at": "2026-06-21T00:00:00Z",
+  "cached": false,
+  "subdomain_count": 5,
+  "unique_ips": 0,
+  "wildcard_count": 0,
+  "source_count": 4,
+  "sources": ["certspotter", "crtsh", "dnsdumpster", "hackertarget"],
+  "subdomains": [
+    {"name": "lists.nmap.org",   "sources": ["crtsh"],                    "ip": null},
+    {"name": "mail.nmap.org",    "sources": ["dnsdumpster"],               "ip": null},
+    {"name": "scanme.nmap.org",  "sources": ["crtsh", "hackertarget"],     "ip": null},
+    {"name": "svn.nmap.org",     "sources": ["certspotter", "crtsh"],      "ip": null},
+    {"name": "www.nmap.org",     "sources": ["certspotter", "crtsh"],      "ip": null}
+  ],
+  "display_name": "fmfalgun",
+  "display_loc": "Chennai, India",
+  "last_refreshed": "2026-06-21T00:00:00Z"
+}

@@ -1,0 +1,116 @@
+name: Monthly Refresh
+
+on:
+  schedule:
+    - cron: '0 3 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+
+      - name: Install subfinder
+        run: |
+          go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+          echo "$HOME/go/bin" >> $GITHUB_PATH
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Refresh active domains
+        shell: python3 {0}
+        run: |
+          import json, subprocess, sys
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+
+          now     = datetime.now(timezone.utc)
+          cutoff  = now - timedelta(days=90)
+          now_str = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+          index_file = Path("web/data/index.json")
+          if not index_file.exists():
+              print("[!] index.json not found — nothing to refresh")
+              sys.exit(0)
+
+          with open(index_file) as f:
+              index = json.load(f)
+
+          active, stale = [], []
+          for d in index.get("domains", []):
+              try:
+                  ts = datetime.fromisoformat(d["last_refreshed"].replace("Z", "+00:00"))
+              except Exception:
+                  stale.append(d["domain"])
+                  continue
+              (active if ts > cutoff else stale).append(d["domain"])
+
+          print(f"[i] Active (<90d): {len(active)}, Stale (>90d): {len(stale)}")
+
+          for domain in active:
+              domain_file = Path(f"web/data/domains/{domain}.json")
+              print(f"[*] Refreshing {domain} ...")
+              result = subprocess.run(
+                  [sys.executable, "subfinder-recon.py", "-d", domain,
+                   "-o", str(domain_file), "--no-cache"],
+                  capture_output=True, text=True
+              )
+              if result.returncode != 0:
+                  print(f"[!] Failed: {result.stderr[:200]}")
+                  continue
+
+              if not domain_file.exists():
+                  print(f"[!] Output file missing for {domain}")
+                  continue
+
+              with open(domain_file) as f:
+                  data = json.load(f)
+
+              # Preserve display metadata
+              orig = next((x for x in index["domains"] if x["domain"] == domain), {})
+              data["display_name"]   = orig.get("display_name", "")
+              data["display_loc"]    = orig.get("display_loc", "")
+              data["last_refreshed"] = now_str
+
+              with open(domain_file, "w") as f:
+                  json.dump(data, f, indent=2)
+
+              # Update index entry
+              for entry in index["domains"]:
+                  if entry["domain"] == domain:
+                      entry["subdomain_count"] = data.get("subdomain_count", 0)
+                      entry["source_count"]    = data.get("source_count", 0)
+                      entry["unique_ips"]      = data.get("unique_ips", 0)
+                      entry["wildcard_count"]  = data.get("wildcard_count", 0)
+                      entry["last_refreshed"]  = now_str
+                      break
+
+              print(f"[+] {domain}: {data.get('subdomain_count', 0)} subdomains")
+
+          index["generated_at"] = now_str
+          with open(index_file, "w") as f:
+              json.dump(index, f, indent=2)
+
+          print(f"[+] Refresh complete: {len(active)} domains updated")
+
+      - name: Commit refresh
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add web/data/
+          git diff --staged --quiet || (git commit -m "data: monthly refresh [skip ci]" && git push)

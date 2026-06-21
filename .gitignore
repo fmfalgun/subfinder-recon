@@ -1,0 +1,13 @@
+cache.db
+__pycache__/
+*.pyc
+.env
+
+# subfinder temp output (not web/data/)
+*.json
+!web/data/**
+!web/data/domains/**
+
+# subfinder plain-text output
+*.txt
+!requirements.txt

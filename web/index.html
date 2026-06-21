@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>subfinder-recon — Passive Subdomain Enumeration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">SUBFINDER-RECON</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-active">Home</a>
+    <a href="subdomain-registry.html">Subdomain Registry</a>
+    <a href="https://github.com/fmfalgun/subfinder-recon" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    <a href="https://fmfalgun.github.io" target="_blank" rel="noopener noreferrer">Portfolio ↗</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>SUBFINDER <span>RECON</span></h1>
+  <p class="tagline">Passive subdomain discovery · source attribution · offline SQLite cache</p>
+  <div class="install-block">
+    <code>python3 subfinder-recon.py -d target.com</code>
+  </div>
+  <div class="hero-cta-row">
+    <a href="subdomain-registry.html" class="cta-btn">→ Subdomain Registry</a>
+    <a href="https://github.com/fmfalgun/subfinder-recon" target="_blank" rel="noopener noreferrer" class="cta-ghost">GitHub ↗</a>
+  </div>
+</section>
+
+<div class="layout">
+
+  <aside class="info-panel">
+
+    <div class="panel-block">
+      <div class="panel-title">&gt; WHAT IS PASSIVE ENUMERATION</div>
+      <p>Passive enumeration queries third-party DNS aggregation services — crtsh, hackertarget, dnsdumpster, certspotter, and others — without ever sending a single packet to the target's DNS servers.</p>
+      <p>Because all queries go to external data sources, the target sees zero traffic. No noise in their logs. No IDS alerts. No rate-limit triggers. The target cannot detect that they are being enumerated.</p>
+      <p>The tradeoff: you are limited to what these services have already indexed. Active brute-force can discover more, but at the cost of visibility.</p>
+    </div>
+
+    <div class="panel-block">
+      <div class="panel-title">&gt; WHY THIS SCRIPT</div>
+      <p>Subfinder's raw output is plain text — one subdomain per line, no metadata. When you need to answer "which service found this subdomain?" or cache results across sessions, raw output falls short.</p>
+      <p>This script adds:</p>
+      <ul>
+        <li><strong>Per-subdomain source tracking</strong> — which aggregator(s) returned each result</li>
+        <li><strong>Wildcard detection</strong> — <code>*.apex</code> entries classified and counted separately</li>
+        <li><strong>SQLite 24h cache</strong> — repeat queries for the same domain serve instantly from <code>cache.db</code></li>
+        <li><strong>Structured JSON output</strong> — machine-readable, scriptable, pipeline-friendly</li>
+      </ul>
+    </div>
+
+    <div class="panel-block">
+      <div class="panel-title">&gt; HOW IT WORKS</div>
+      <pre class="arch-diagram">python3 subfinder-recon.py -d target.com
+▼
+SQLite cache (cache.db)
+— fresh (&lt;24h)? serve instantly
+▼ (stale or --no-cache)
+subfinder binary (-oJ -cs flags)
+▼
+crtsh / certspotter / hackertarget
+/ dnsdumpster / ...
+▼
+normalize: dedup · classify wildcards
+· collect sources
+▼
+JSON output + stdout summary</pre>
+    </div>
+
+  </aside>
+
+  <main class="home-main">
+
+    <div class="panel-block">
+      <div class="panel-title">&gt; USAGE</div>
+      <pre class="code-block"><span class="comment"># basic passive query</span>
+python3 subfinder-recon.py -d target.com
+
+<span class="comment"># save structured JSON to file</span>
+python3 subfinder-recon.py -d target.com -o results.json
+
+<span class="comment"># bypass 24h cache, force fresh run</span>
+python3 subfinder-recon.py -d target.com --no-cache
+
+<span class="comment"># resolve IPs (adds -active -ip to subfinder)</span>
+python3 subfinder-recon.py -d target.com --active
+
+<span class="comment"># query only specific sources</span>
+python3 subfinder-recon.py -d target.com -s crtsh,hackertarget
+
+<span class="comment"># submit results to Subdomain Registry</span>
+python3 subfinder-recon.py -d target.com --submit</pre>
+    </div>
+
+    <div class="panel-block">
+      <div class="panel-title">&gt; OUTPUT SCHEMA</div>
+      <pre class="code-block">{
+  <span class="json-key">"domain"</span>:          <span class="json-str">"nmap.org"</span>,
+  <span class="json-key">"queried_at"</span>:      <span class="json-str">"2026-06-21T00:00:00Z"</span>,
+  <span class="json-key">"cached"</span>:          <span class="json-bool">false</span>,
+  <span class="json-key">"subdomain_count"</span>: <span class="json-num">5</span>,
+  <span class="json-key">"wildcard_count"</span>:  <span class="json-num">1</span>,
+  <span class="json-key">"unique_ips"</span>:      <span class="json-num">0</span>,
+  <span class="json-key">"source_count"</span>:    <span class="json-num">4</span>,
+  <span class="json-key">"sources"</span>:         [<span class="json-str">"crtsh"</span>, <span class="json-str">"certspotter"</span>, <span class="json-str">"hackertarget"</span>, <span class="json-str">"dnsdumpster"</span>],
+  <span class="json-key">"subdomains"</span>: [
+    {
+      <span class="json-key">"name"</span>:    <span class="json-str">"scanme.nmap.org"</span>,
+      <span class="json-key">"sources"</span>: [<span class="json-str">"crtsh"</span>, <span class="json-str">"hackertarget"</span>],
+      <span class="json-key">"ip"</span>:      <span class="json-bool">null</span>
+    },
+    {
+      <span class="json-key">"name"</span>:    <span class="json-str">"*.nmap.org"</span>,
+      <span class="json-key">"sources"</span>: [<span class="json-str">"crtsh"</span>],
+      <span class="json-key">"ip"</span>:      <span class="json-bool">null</span>
+    }
+  ]
+}</pre>
+    </div>
+
+    <div class="panel-block">
+      <div class="panel-title">&gt; SOURCE ATTRIBUTION</div>
+      <p>The script passes <code class="inline-code">-oJ -cs</code> to the subfinder binary: <code class="inline-code">-oJ</code> requests JSON output (one object per subdomain), and <code class="inline-code">-cs</code> (comma-separated sources) embeds which aggregator found each entry directly in that object.</p>
+      <p>Without <code class="inline-code">--active</code>, all <code class="inline-code">"ip"</code> fields are <code class="inline-code">null</code> and <code class="inline-code">unique_ips</code> is <code class="inline-code">0</code>. Passing <code class="inline-code">--active</code> appends <code class="inline-code">-active -ip</code> to the subfinder command, triggering DNS resolution for every subdomain found.</p>
+      <p>Wildcards (<code class="inline-code">*.apex.com</code>) are classified separately from regular subdomains and reported in <code class="inline-code">wildcard_count</code>. They indicate a catch-all DNS record and should not be treated as distinct hosts.</p>
+    </div>
+
+    <div class="hof-cta-card">
+      <div class="hof-cta-label">[ // SUBDOMAIN REGISTRY ]</div>
+      <p class="hof-cta-desc">Every domain queried with <code class="inline-code">--submit</code> is indexed here. Browse community subdomain scans — source attribution, wildcard detection — no tool required.</p>
+      <a href="subdomain-registry.html" class="cta-btn">→ Open Subdomain Registry</a>
+    </div>
+
+  </main>
+
+</div>
+
+<footer>
+  Built by <a href="https://fmfalgun.github.io">Falgun Marothia</a> · data from passive DNS aggregators · <a href="https://github.com/fmfalgun/subfinder-recon">GitHub ↗</a> · <a href="subdomain-registry.html">Subdomain Registry</a>
+</footer>
+
+</body>
+</html>

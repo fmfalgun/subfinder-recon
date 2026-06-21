@@ -1,0 +1,7 @@
+# subfinder-recon uses Python stdlib only — no pip dependencies.
+# stdlib used: json, re, sqlite3, sys, argparse, urllib.request, pathlib, datetime, subprocess, shutil
+
+# External binary required:
+#   subfinder — passive subdomain enumeration
+#   Install: go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+#   Docs: https://github.com/projectdiscovery/subfinder

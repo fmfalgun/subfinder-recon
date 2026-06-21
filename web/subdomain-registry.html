@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>subfinder-recon — Subdomain Registry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">SUBFINDER-RECON</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="subdomain-registry.html" class="nav-active">Subdomain Registry</a>
+    <a href="https://github.com/fmfalgun/subfinder-recon" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    <a href="https://fmfalgun.github.io" target="_blank" rel="noopener noreferrer">Portfolio ↗</a>
+  </div>
+</nav>
+
+<div class="hof-subheader">
+  <span id="sr-stats">— domains · — subdomains indexed</span>
+</div>
+
+<div id="error-box"><span id="error-message"></span></div>
+
+<main id="main">
+
+  <div id="sr-disclaimer">
+    <span class="disclaimer-icon">&#9888;</span>
+    All entries below were submitted via <code>subfinder-recon --submit</code>.
+    Submitters acknowledged their scan would be publicly listed here.
+    <strong>Only enumerate domains you have permission to scan.</strong>
+  </div>
+
+  <div id="sr-howto">
+    <span class="howto-label">[ // ADD YOUR DOMAIN ]</span>
+    <code class="howto-cmd">python3 subfinder-recon.py -d yourdomain.com --submit</code>
+    <a href="https://github.com/fmfalgun/subfinder-recon" target="_blank" rel="noopener noreferrer" class="howto-link">→ GitHub ↗</a>
+  </div>
+
+  <div id="search-row">
+    <input id="search-input" type="text" placeholder="filter domains..." autocomplete="off" spellcheck="false">
+    <span id="search-count"></span>
+  </div>
+
+  <div id="domain-list"></div>
+
+</main>
+
+<footer>
+  Built by Falgun Marothia · <a href="index.html">← Home</a> · refreshed monthly by GitHub Actions
+</footer>
+
+<script src="assets/js/subdomain-registry.js"></script>
+</body>
+</html>
