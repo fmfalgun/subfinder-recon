@@ -213,7 +213,8 @@ nav {
   margin-bottom: 32px;
 }
 
-.panel-heading {
+.panel-heading,
+.panel-title {
   color: var(--khaki);
   font-size: .75rem;
   letter-spacing: .1em;
@@ -260,6 +261,19 @@ nav {
   gap: 4px;
 }
 
+pre.arch-diagram {
+  display: block;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 16px 20px;
+  color: var(--dim);
+  font-family: var(--font-mono);
+  font-size: .82rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
 .arch-box {
   background: var(--card);
   border: 1px solid var(--border);
@@ -304,6 +318,11 @@ nav {
   border-radius: 4px;
   padding: 20px;
   margin-bottom: 16px;
+  color: var(--green);
+  font-family: var(--font-mono);
+  font-size: .88rem;
+  white-space: pre-wrap;
+  word-break: break-all;
 }
 
 .code-pre {
@@ -315,11 +334,16 @@ nav {
   word-break: break-all;
 }
 
-.code-comment {
+.code-comment,
+.comment {
   color: var(--dim);
   font-size: .8rem;
-  margin-bottom: 4px;
 }
+
+.json-key  { color: var(--amber); }
+.json-str  { color: var(--green); }
+.json-bool { color: var(--blue); }
+.json-num  { color: var(--blue); }
 
 /* ============================================================
    Subdomain Registry Page
@@ -626,21 +650,22 @@ nav {
   font-size: .88rem;
 }
 
-.site-footer {
+footer {
   border-top: 1px solid var(--border);
-  padding: 24px;
+  padding: 2rem;
   text-align: center;
   color: var(--dim);
-  font-size: .8rem;
+  font-family: var(--font-mono);
+  font-size: .78rem;
   margin-top: 60px;
 }
 
-.site-footer a {
+footer a {
   color: var(--amber);
   text-decoration: none;
 }
 
-.site-footer a:hover {
+footer a:hover {
   text-decoration: underline;
 }
 
