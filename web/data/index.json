@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-21T00:00:00Z",
+  "generated_at": "2026-06-22T07:15:41Z",
   "total_domains": 1,
   "total_scans": 1,
   "domains": [
@@ -7,9 +7,9 @@
       "domain": "nmap.org",
       "display_name": "fmfalgun",
       "display_loc": "Chennai, India",
-      "queried_at": "2026-06-21T00:00:00Z",
-      "last_refreshed": "2026-06-21T00:00:00Z",
-      "subdomain_count": 5,
+      "queried_at": "2026-06-22T07:15:41Z",
+      "last_refreshed": "2026-06-22T07:15:41Z",
+      "subdomain_count": 18,
       "source_count": 4,
       "unique_ips": 0,
       "wildcard_count": 0
