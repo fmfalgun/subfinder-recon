@@ -1,13 +1,12 @@
 {
   "domain": "nmap.org",
-  "queried_at": "2026-06-29T06:40:16Z",
+  "queried_at": "2026-06-30T06:05:52Z",
   "cached": false,
-  "subdomain_count": 18,
+  "subdomain_count": 17,
   "unique_ips": 0,
   "wildcard_count": 0,
-  "source_count": 3,
+  "source_count": 2,
   "sources": [
-    "crtsh",
     "hackertarget",
     "submd"
   ],
@@ -15,8 +14,8 @@
     {
       "name": "ack.nmap.org",
       "sources": [
-        "submd",
-        "hackertarget"
+        "hackertarget",
+        "submd"
       ],
       "ip": null
     },
@@ -45,8 +44,7 @@
       "name": "issues.nmap.org",
       "sources": [
         "submd",
-        "hackertarget",
-        "crtsh"
+        "hackertarget"
       ],
       "ip": null
     },
@@ -92,8 +90,7 @@
       "name": "svn.nmap.org",
       "sources": [
         "submd",
-        "hackertarget",
-        "crtsh"
+        "hackertarget"
       ],
       "ip": null
     },
@@ -129,15 +126,7 @@
       "name": "www.nmap.org",
       "sources": [
         "submd",
-        "hackertarget",
-        "crtsh"
-      ],
-      "ip": null
-    },
-    {
-      "name": "www.svn.nmap.org",
-      "sources": [
-        "crtsh"
+        "hackertarget"
       ],
       "ip": null
     },
@@ -152,5 +141,5 @@
   ],
   "display_name": "fmfalgun",
   "display_loc": "Chennai, India",
-  "last_refreshed": "2026-06-29T06:40:16Z"
+  "last_refreshed": "2026-06-30T06:05:52Z"
 }
