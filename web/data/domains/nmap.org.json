@@ -1,30 +1,21 @@
 {
   "domain": "nmap.org",
-  "queried_at": "2026-07-10T05:58:44Z",
+  "queried_at": "2026-07-11T04:59:21Z",
   "cached": false,
-  "subdomain_count": 17,
+  "subdomain_count": 16,
   "unique_ips": 0,
   "wildcard_count": 0,
-  "source_count": 3,
+  "source_count": 2,
   "sources": [
     "hackertarget",
-    "submd",
     "thc"
   ],
   "subdomains": [
     {
       "name": "ack.nmap.org",
       "sources": [
-        "hackertarget",
         "thc",
-        "submd"
-      ],
-      "ip": null
-    },
-    {
-      "name": "canme.nmap.org",
-      "sources": [
-        "submd"
+        "hackertarget"
       ],
       "ip": null
     },
@@ -45,43 +36,39 @@
     {
       "name": "issues.nmap.org",
       "sources": [
-        "submd",
-        "hackertarget",
-        "thc"
+        "thc",
+        "hackertarget"
       ],
       "ip": null
     },
     {
       "name": "research.nmap.org",
       "sources": [
-        "hackertarget",
         "thc",
-        "submd"
+        "hackertarget"
       ],
       "ip": null
     },
     {
       "name": "scanme.nmap.org",
       "sources": [
-        "hackertarget",
         "thc",
-        "submd"
+        "hackertarget"
       ],
       "ip": null
     },
     {
       "name": "scanme2.nmap.org",
       "sources": [
-        "hackertarget",
-        "thc"
+        "thc",
+        "hackertarget"
       ],
       "ip": null
     },
     {
       "name": "scanmev6.nmap.org",
       "sources": [
-        "thc",
-        "submd"
+        "thc"
       ],
       "ip": null
     },
@@ -89,8 +76,7 @@
       "name": "scannme.nmap.org",
       "sources": [
         "hackertarget",
-        "thc",
-        "submd"
+        "thc"
       ],
       "ip": null
     },
@@ -98,7 +84,6 @@
       "name": "svn.nmap.org",
       "sources": [
         "thc",
-        "submd",
         "hackertarget"
       ],
       "ip": null
@@ -106,8 +91,7 @@
     {
       "name": "u003ewww.nmap.org",
       "sources": [
-        "thc",
-        "submd"
+        "thc"
       ],
       "ip": null
     },
@@ -128,31 +112,28 @@
     {
       "name": "ww.nmap.org",
       "sources": [
-        "thc",
-        "submd"
+        "thc"
       ],
       "ip": null
     },
     {
       "name": "www.nmap.org",
       "sources": [
-        "hackertarget",
         "thc",
-        "submd"
+        "hackertarget"
       ],
       "ip": null
     },
     {
       "name": "wwww.nmap.org",
       "sources": [
-        "hackertarget",
         "thc",
-        "submd"
+        "hackertarget"
       ],
       "ip": null
     }
   ],
   "display_name": "fmfalgun",
   "display_loc": "Chennai, India",
-  "last_refreshed": "2026-07-10T05:58:44Z"
+  "last_refreshed": "2026-07-11T04:59:21Z"
 }
