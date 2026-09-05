@@ -1,17 +1,16 @@
 {
   "domain": "nmap.org",
-  "queried_at": "2026-09-04T06:49:05Z",
+  "queried_at": "2026-09-05T06:34:09Z",
   "cached": false,
   "subdomain_count": 37,
   "unique_ips": 0,
   "wildcard_count": 0,
-  "source_count": 6,
+  "source_count": 5,
   "sources": [
     "anubis",
     "crtsh",
     "hackertarget",
     "scanmalware",
-    "shodanct",
     "submd"
   ],
   "subdomains": [
@@ -93,10 +92,9 @@
       "sources": [
         "scanmalware",
         "hackertarget",
-        "submd",
         "crtsh",
-        "anubis",
-        "shodanct"
+        "submd",
+        "anubis"
       ],
       "ip": null
     },
@@ -117,9 +115,9 @@
     {
       "name": "research.nmap.org",
       "sources": [
+        "submd",
         "anubis",
-        "hackertarget",
-        "submd"
+        "hackertarget"
       ],
       "ip": null
     },
@@ -154,9 +152,9 @@
     {
       "name": "scanme.nmap.org",
       "sources": [
+        "submd",
         "anubis",
-        "hackertarget",
-        "submd"
+        "hackertarget"
       ],
       "ip": null
     },
@@ -191,9 +189,9 @@
     {
       "name": "scannme.nmap.org",
       "sources": [
+        "submd",
         "anubis",
-        "hackertarget",
-        "submd"
+        "hackertarget"
       ],
       "ip": null
     },
@@ -235,11 +233,10 @@
     {
       "name": "svn.nmap.org",
       "sources": [
+        "submd",
         "anubis",
-        "shodanct",
         "scanmalware",
         "hackertarget",
-        "submd",
         "crtsh"
       ],
       "ip": null
@@ -275,10 +272,9 @@
     {
       "name": "www.nmap.org",
       "sources": [
-        "shodanct",
         "hackertarget",
-        "submd",
-        "crtsh"
+        "crtsh",
+        "submd"
       ],
       "ip": null
     },
@@ -292,14 +288,14 @@
     {
       "name": "wwww.nmap.org",
       "sources": [
+        "submd",
         "anubis",
-        "hackertarget",
-        "submd"
+        "hackertarget"
       ],
       "ip": null
     }
   ],
   "display_name": "fmfalgun",
   "display_loc": "Chennai, India",
-  "last_refreshed": "2026-09-04T06:49:05Z"
+  "last_refreshed": "2026-09-05T06:34:09Z"
 }
