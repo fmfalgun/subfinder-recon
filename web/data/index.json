@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01T08:06:39Z",
+  "generated_at": "2026-10-01T09:47:02Z",
   "total_domains": 1,
   "total_scans": 1,
   "domains": [
@@ -8,9 +8,9 @@
       "display_name": "fmfalgun",
       "display_loc": "Chennai, India",
       "queried_at": "2026-10-01T08:06:39Z",
-      "last_refreshed": "2026-10-01T08:06:39Z",
-      "subdomain_count": 32,
-      "source_count": 4,
+      "last_refreshed": "2026-10-01T09:47:02Z",
+      "subdomain_count": 33,
+      "source_count": 5,
       "unique_ips": 0,
       "wildcard_count": 0
     }
