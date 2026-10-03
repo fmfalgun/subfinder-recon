@@ -1,14 +1,13 @@
 {
   "domain": "nmap.org",
-  "queried_at": "2026-10-02T07:50:27Z",
+  "queried_at": "2026-10-03T07:23:43Z",
   "cached": false,
-  "subdomain_count": 33,
+  "subdomain_count": 32,
   "unique_ips": 0,
   "wildcard_count": 0,
-  "source_count": 5,
+  "source_count": 4,
   "sources": [
     "anubis",
-    "crtsh",
     "hackertarget",
     "scanmalware",
     "shodanct"
@@ -82,11 +81,10 @@
     {
       "name": "issues.nmap.org",
       "sources": [
-        "anubis",
         "scanmalware",
         "shodanct",
-        "hackertarget",
-        "crtsh"
+        "anubis",
+        "hackertarget"
       ],
       "ip": null
     },
@@ -215,11 +213,10 @@
     {
       "name": "svn.nmap.org",
       "sources": [
-        "scanmalware",
-        "shodanct",
+        "anubis",
         "hackertarget",
-        "crtsh",
-        "anubis"
+        "scanmalware",
+        "shodanct"
       ],
       "ip": null
     },
@@ -241,16 +238,8 @@
       "name": "www.nmap.org",
       "sources": [
         "hackertarget",
-        "crtsh",
         "scanmalware",
         "shodanct"
-      ],
-      "ip": null
-    },
-    {
-      "name": "www.svn.nmap.org",
-      "sources": [
-        "crtsh"
       ],
       "ip": null
     },
@@ -265,5 +254,5 @@
   ],
   "display_name": "fmfalgun",
   "display_loc": "Chennai, India",
-  "last_refreshed": "2026-10-02T07:50:27Z"
+  "last_refreshed": "2026-10-03T07:23:43Z"
 }
